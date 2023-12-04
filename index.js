@@ -91,6 +91,41 @@ async function run() {
         const result =await propertiesCollection.insertOne(user);
         res.send(result)
     })
+     // GET > property
+     app.get('/properties',async(req,res)=>{
+        const result =await propertiesCollection.find().toArray();
+        res.send(result);
+    })
+    // 
+    app.delete('/properties/:id',async(req,res)=>{
+        const id =req.params.id;
+        const query={_id: new ObjectId(id)}
+
+        const result =await propertiesCollection.deleteOne(query);
+        res.send(result);
+    })
+
+    // Update status
+    app.put('/properties/verify/:id', async (req, res) => {
+        const { id } = req.params;
+        const query ={ _id: new ObjectId(id) }
+          const result = await propertiesCollection.updateOne(
+            query,{ $set: { status: 'verified' } }
+          );
+          res.send(result);
+       
+      });
+      app.put('/properties/rejected/:id', async (req, res) => {
+        const { id } = req.params;
+        const query ={ _id: new ObjectId(id) }
+          const result = await propertiesCollection.updateOne(
+            query,{ $set: { status: 'rejected' } }
+          );
+          res.send(result);
+       
+      });
+
+
 
 
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
