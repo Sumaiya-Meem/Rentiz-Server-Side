@@ -62,7 +62,7 @@ async function run() {
         res.send(result)
     })
 
-     // Make agent
+     // make agent
      app.patch('/users/agent/:id', async (req, res) => {
         const id = req.params.id;
         const query = { _id: new ObjectId(id) };
@@ -74,6 +74,15 @@ async function run() {
         const result = await userCollection.updateOne(query, updateDoc);
         res.send(result);
       });
+
+    // find user by email
+  app.get('/users/:email', async (req, res) => {
+    const userEmail = req.params.email;
+
+    const result = await userCollection.findOne({ email: userEmail });
+    res.send(result);
+});
+
 
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
