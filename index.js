@@ -26,6 +26,7 @@ async function run() {
     // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
     const userCollection = client.db("rentizDB").collection("users");
+    const propertiesCollection = client.db("rentizDB").collection("properties");
 
     // POST > User
     app.post('/users',async(req,res)=>{
@@ -82,6 +83,14 @@ async function run() {
     const result = await userCollection.findOne({ email: userEmail });
     res.send(result);
 });
+
+
+      // POST > Property
+      app.post('/properties',async(req,res)=>{
+        const user = req.body;
+        const result =await propertiesCollection.insertOne(user);
+        res.send(result)
+    })
 
 
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
