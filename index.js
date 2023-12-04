@@ -34,6 +34,12 @@ async function run() {
         res.send(result)
     })
 
+    // GET > User
+    app.get('/users',async(req,res)=>{
+        const result =await userCollection.find().toArray();
+        res.send(result);
+    })
+
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
