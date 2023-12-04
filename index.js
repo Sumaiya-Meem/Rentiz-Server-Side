@@ -115,7 +115,7 @@ async function run() {
           res.send(result);
        
       });
-      app.put('/properties/rejected/:id', async (req, res) => {
+      app.put('/properties/reject/:id', async (req, res) => {
         const { id } = req.params;
         const query ={ _id: new ObjectId(id) }
           const result = await propertiesCollection.updateOne(
