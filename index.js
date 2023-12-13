@@ -133,6 +133,13 @@ async function run() {
       });
 
 
+      // Review section
+
+      app.post('/reviews',async(req,res)=>{
+        const review = req.body;
+        const result =await reviewCollection.insertOne(review);
+        res.send(result)
+    })
 
 
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
