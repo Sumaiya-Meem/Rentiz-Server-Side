@@ -142,12 +142,18 @@ async function run() {
         res.send(result)
     })
 
+    app.get('/reviews',async(req,res)=>{
+      const result =await reviewCollection.find().toArray();
+      res.send(result);
+  })
+
     // wish list section
     app.post('/wish',async(req,res)=>{
       const wish = req.body;
       const result =await wishListCollection.insertOne(wish);
       res.send(result)
   })
+ 
 
 
 
