@@ -154,6 +154,10 @@ async function run() {
       res.send(result)
   })
  
+  app.get('/wish',async(req,res)=>{
+    const result =await wishListCollectionn.find().toArray();
+    res.send(result);
+})
 
 
 
