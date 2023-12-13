@@ -27,6 +27,7 @@ async function run() {
     // await client.db("admin").command({ ping: 1 });
     const userCollection = client.db("rentizDB").collection("users");
     const propertiesCollection = client.db("rentizDB").collection("properties");
+    const reviewCollection = client.db("rentizDB").collection("reviews");
 
     // POST > User
     app.post('/users',async(req,res)=>{
