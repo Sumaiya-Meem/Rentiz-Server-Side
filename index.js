@@ -28,6 +28,7 @@ async function run() {
     const userCollection = client.db("rentizDB").collection("users");
     const propertiesCollection = client.db("rentizDB").collection("properties");
     const reviewCollection = client.db("rentizDB").collection("reviews");
+    const wishListCollection = client.db("rentizDB").collection("wish");
 
     // POST > User
     app.post('/users',async(req,res)=>{
@@ -140,6 +141,15 @@ async function run() {
         const result =await reviewCollection.insertOne(review);
         res.send(result)
     })
+
+    // wish list section
+    app.post('/wish',async(req,res)=>{
+      const wish = req.body;
+      const result =await wishListCollection.insertOne(wish);
+      res.send(result)
+  })
+
+
 
 
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
