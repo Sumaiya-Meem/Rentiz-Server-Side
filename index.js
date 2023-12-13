@@ -96,6 +96,12 @@ async function run() {
         const result =await propertiesCollection.find().toArray();
         res.send(result);
     })
+    app.get('/properties/:id',async(req,res)=>{
+      const id =req.params.id;
+      const query={_id: new ObjectId(id)}
+      const result =await propertiesCollection.findOne(query);
+      res.send(result);
+  })
     // 
     app.delete('/properties/:id',async(req,res)=>{
         const id =req.params.id;
